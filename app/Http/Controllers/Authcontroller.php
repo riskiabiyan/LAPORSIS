@@ -45,10 +45,19 @@ class Authcontroller extends Controller
         $credentials = $request->only('email', 'password');
 
         if(Auth::attempt($credentials)){
-            return redirect('/dashboard');
+            $request->session()->regenerate();
+            return redirect('/home');
+
         }else{
             return back()->withErrors(['email' => 'Email atau password salah']);
         }
 
+    }
+
+    public function logout(Request $request){
+        Auth::logout();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+        return redirect('/login');
     }
 }

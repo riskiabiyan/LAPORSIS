@@ -21,4 +21,6 @@ Route::get('/register', [auth::class, 'register']);
 Route::post('/simpanuser', [auth::class, 'simpanuser']);
 Route::post('/ceklogin', [auth::class, 'ceklogin']);
 
-Route::get('/dashboard', [home::class, 'home']);
+Route::get('/home', [home::class, 'home']);
+
+Route::post('/logout', [auth::class, 'logout']);
